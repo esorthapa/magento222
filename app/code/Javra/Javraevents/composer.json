@@ -8,7 +8,7 @@
     }
   ],
   "repositories": [
-    { "type": "vcs", "url": "http://git.javra.com/ayushdada/MagentoWebshop/tree/catalog" }
+    { "type": "vcs", "url": "https://github.com/esorthapa/magento222.git" }
   ],
   "require-all": true,
 
