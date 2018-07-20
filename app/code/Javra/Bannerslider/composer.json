@@ -1,0 +1,22 @@
+{
+    "name": "javra/module-bannerslider",
+    "description": "Magento2 version Main Banner slider ",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Javra\\Bannerslider\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

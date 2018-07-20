@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Javra_Banner::main_menu" title="Banner" module="Javra_Banner"
+             sortOrder="10" resource="Javra_Banner::banner" />
+
+        <add id="Javra_Banner::banner_slider" title="Add Slider"
+             module="Javra_Banner" sortOrder="1" parent="Javra_Banner::main_menu"
+             action="banner/slider/new" resource="Javra_Banner::manage_slider" />
+        <add id="Javra_Banner::banner_slider_manage" title="Slider Manage"
+             module="Javra_Banner" sortOrder="1" parent="Javra_Banner::main_menu"
+             action="banner/slider/manage" resource="Javra_Banner::manage_slider_manage" />
+
+        <!-- Magestore_Bannerslider::bannerslider_bannerslider -->
+
+        <!--<add id="Javra_Banner::banner_sliders" title="Manage Sliders" module="Javra_Banner"-->
+             <!--sortOrder="10" parent="Javra_Banner::banner" action="bannerslideradmin/slider"-->
+             <!--resource="Javra_Banner::banner_sliders"/>-->
+
+    </menu>
+</config>

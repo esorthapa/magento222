@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Javra_Bannerslider::bannerslider" title="Banner Slider" sortOrder="10">
+                    <resource id="Javra_Bannerslider::bannerslider_bannerslider" title="Banner Slider" sortOrder="10">
+                        <resource id="Javra_Bannerslider::bannerslider_sliders" title="Manage Sliders" sortOrder="10"/>
+                        <resource id="Javra_Bannerslider::bannerslider_banners" title="Manage Banners" sortOrder="10"/>
+                        <resource id="Javra_Bannerslider::bannerslider_coreslider" title="Slider Styles"
+                                  sortOrder="10"/>
+                        <resource id="Javra_Bannerslider::bannerslider_reports" title="Reports" sortOrder="10">
+                            <resource id="Javra_Bannerslider::bannerslider_reports_perslider" title="Reports Slider"
+                                      sortOrder="10"/>
+                            <resource id="Javra_Bannerslider::bannerslider_reports_allslider"
+                                      title="Reports Of All Sliders" sortOrder="10"/>
+                        </resource>
+                        <resource id="Javra_Bannerslider::settings" title="Settings" sortOrder="20"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Javra_Bannerslider::config_bannerslider" title="Banner Slider"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

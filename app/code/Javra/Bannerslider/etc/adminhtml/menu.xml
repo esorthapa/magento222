@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <!--<menu>-->
+        <!--<add id="Javra_Bannerslider::bannerslider" title="Banner Slider" module="Javra_Bannerslider" sortOrder="10"-->
+             <!--resource="Javra_Bannerslider::bannerslider"/>-->
+        <!--<add id="Javra_Bannerslider::bannerslider_sliders" title="Manage Slider" module="Javra_Bannerslider"-->
+             <!--action="menuitem/index/index" parent="Javra_Bannerslider::bannerslider" sortOrder="10"-->
+             <!--resource="Javra_Bannerslider::bannerslider_sliders"/>-->
+        <!--<add id="Javra_Bannerslider::bannerslider_banners" title="Manage Banner" module="Javra_Bannerslider"-->
+             <!--action="menuitem/index/index" parent="Javra_Bannerslider::bannerslider" sortOrder="10"-->
+             <!--resource="Javra_Bannerslider::bannerslider_banners"/>-->
+        <!--<add id="Javra_Bannerslider::bannerslider_coreslider" title="Slider Style" module="Javra_Bannerslider"-->
+             <!--action="menuitem/index/index" parent="Javra_Bannerslider::bannerslider" sortOrder="10"-->
+             <!--resource="Javra_Bannerslider::bannerslider_coreslider"/>-->
+        <!--<add id="Javra_Bannerslider::bannerslider_reports_perslider" title="Report Slider" module="Javra_Bannerslider"-->
+             <!--action="menuitem/index/index" parent="Javra_Bannerslider::bannerslider" sortOrder="10"-->
+             <!--resource="Javra_Bannerslider::bannerslider_reports_perslider"/>-->
+        <!--<add id="Javra_Bannerslider::bannerslider_reports_allslider" title="Report of All Slider"-->
+             <!--module="Javra_Bannerslider"-->
+             <!--action="menuitem/index/index" parent="Javra_Bannerslider::bannerslider" sortOrder="10"-->
+             <!--resource="Javra_Bannerslider::bannerslider_reports_allslider"/>-->
+        <!--<add id="Javra_Bannerslider::bannerslider_settings" title="Bannerslider Settings" module="Javra_Bannerslider"-->
+             <!--action="menuitem/index/index" parent="Javra_Bannerslider::bannerslider" sortOrder="30"-->
+             <!--resource="Javra_Bannerslider::bannerslider_settings"/>-->
+    <!--</menu>-->
+
+    <menu>
+        <add id="Javra_Bannerslider::bannerslider" title="Banner Slider" module="Javra_Bannerslider" sortOrder="10" resource="Javra_Bannerslider::bannerslider" />
+
+
+
+        <add id="Javra_Bannerslider::bannerslider_sliders" title="Manage Sliders" module="Javra_Bannerslider" sortOrder="10" parent="Javra_Bannerslider::bannerslider" action="bannerslideradmin/slider" resource="Javra_Bannerslider::bannerslider_sliders"/>
+
+        <add id="Javra_Bannerslider::bannerslider_banners" title="Manage Banners" module="Javra_Bannerslider" sortOrder="10" parent="Javra_Bannerslider::bannerslider" action="bannerslideradmin/banner" resource="Javra_Bannerslider::bannerslider_banners"/>
+
+        <add id="Javra_Bannerslider::bannerslider_coreslider" title="Preview Slider Styles" module="Javra_Bannerslider" sortOrder="10" parent="Javra_Bannerslider::bannerslider" action="bannerslideradmin/coreslider" resource="Javra_Bannerslider::bannerslider_coreslider"/>
+
+
+        <add id="Javra_Bannerslider::bannerslider_reports_perslider" title="Reports Per Slider" module="Javra_Bannerslider" sortOrder="10" parent="Javra_Bannerslider::bannerslider" action="bannerslideradmin/report" resource="Javra_Bannerslider::bannerslider_reports_perslider"/>
+        <add id="Javra_Bannerslider::bannerslider_reports_allslider" title="Reports All Sliders" module="Javra_Bannerslider" sortOrder="10" parent="Javra_Bannerslider::bannerslider" action="bannerslideradmin/report/banner" resource="Javra_Bannerslider::bannerslider_reports_allslider"/>
+
+
+        <add id="Javra_Bannerslider::settings" title="Settings" module="Magestore_Bannerslider" sortOrder="20" parent="Javra_Bannerslider::bannerslider" action="adminhtml/system_config/edit/section/bannerslider" resource="Javra_Bannerslider::settings"/>
+
+
+    </menu>
+</config>

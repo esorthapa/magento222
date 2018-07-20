@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Javra_Viewcount::index" sortOrder="10" title="index">
+					<resource id="Javra_Viewcount::index_index" sortOrder="10" title="index index"/>
+				</resource>
+				<resource id="Javra_Viewcount::Count" sortOrder="10" title="Count">
+					<resource id="Javra_Viewcount::Count_save" sortOrder="10" title="Save Count"/>
+					<resource id="Javra_Viewcount::Count_delete" sortOrder="20" title="Delete Count"/>
+					<resource id="Javra_Viewcount::Count_update" sortOrder="30" title="Update Count"/>
+					<resource id="Javra_Viewcount::Count_view" sortOrder="40" title="View Count"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

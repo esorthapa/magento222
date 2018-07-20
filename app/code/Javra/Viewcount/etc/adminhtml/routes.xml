@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+	<router id="admin">
+		<!--<route frontName="index" id="index">-->
+			<!--<module before="Magento_Backend" name="Javra_Viewcount"/>-->
+		<!--</route>-->
+		<route frontName="javra_viewcount" id="javra_viewcount">
+			<module before="Magento_Backend" name="Javra_Viewcount"/>
+		</route>
+	</router>
+</config>
