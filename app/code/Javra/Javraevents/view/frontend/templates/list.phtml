@@ -1,0 +1,205 @@
+<div class="news-events-wrapper">
+    <div class="edelman-news-events">
+        <?php
+        $mediaUrl = $block->getBaseMediaUrl();
+        $totalPagesAll = $this->getTotalPagesAll();
+        $totalPagesNews = $this->getTotalPagesNews();
+        $totalPagesEvents = $this->getTotalPagesEvents();
+        $PagesNumber = $this->getPagesNumber();
+        $pageType = $this->getType();
+        $_postlist = $block->getPosts();
+        if (($_postlist && count($_postlist))) { ?>
+            <div class="filter-wrapper placeHolderStyling">
+                <label><?php echo __('Filter by:'); ?></label>
+                <select class="selectpicker" id="selectpicker">
+                    <option value='ALL' id="all" selected="selected"><?php echo __("All"); ?></option>
+                    <option value="1" id="news"><?php echo __("News"); ?></option>
+                    <option value="0" id="events"><?php echo __("Events"); ?></option>
+                </select>
+            </div>
+            <!--            --><?php //?>
+            <div class="shownews"><?php echo __('Sorry. The News Post isn\'t available for current store.'); ?></div>
+            <div class="showevents"><?php echo __('Sorry. The Events Post isn\'t available for current store.'); ?></div>
+            <ul class="lists">
+                <?php foreach ($block->getPosts() as $post) { ?>
+                    <li class=li-load-more>
+                        <img src="<?php echo $this->helper('Javra\Javraevents\Helper\ImagePath')->getImageUrl($post->getImage()); ?>" alt="">
+                        <div class="dateTitle">
+                            <?php if ($post->getType() == 1) {
+                                ?>
+                                <h3> <?php echo __("News"); ?></h3>
+
+                            <?php } else { ?>
+                                <h3> <?php echo __("Events"); ?></h3>
+                            <?php }
+
+                            $startdate = $post->getStartDate();
+                            $startdate = date("d.m.Y", strtotime($startdate));
+                            echo "<span>" . $startdate . "</span>";
+                            ?>
+                        </div>
+                        <h4><?php echo $post->getTitle(); ?></h4>
+
+                        <?php $sort_description = $post->getShortDescription();
+                        echo "<p>" . $sort_description . "</p>";
+                        ?>
+                        <a href="<?php echo $post->getUrlKey() ?>"><?php echo __("Read more"); ?></a>
+                    </li>
+                <?php } ?>
+            </ul>
+            <div class="loadMore"><a href="" id="load-more" class="load-more-no-ajax"><?php echo __("Load more"); ?></a>
+            </div>
+
+            <!--        <div class="tutorial_list">-->
+            <!--            <div class="show_more_main" id="show_more_main--><?php //echo $post->getId(); ?><!--" >-->
+            <!--                <div class="loadMore"><button  id="load-more">Load More</button></div>-->
+
+            <!--            </div>-->
+            <!--        </div>-->
+
+        <?php } else { ?>
+            <div class="edelman-news-events">
+                <h2 class="genericFormStyling"><?php echo __('Sorry. The post isn\'t available for current store.'); ?></h2>
+            </div>
+        <?php } ?>
+    </div>
+
+
+    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('event_sidebar')->toHtml(); ?>
+</div>
+<div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+
+<script>
+    requirejs(['jquery', 'Javra_Layoutupdate/js/customselectbox'], function (jQuery, cutomSelectBox) {
+        jQuery(document).ready(function ($) {
+            var load = $('#load-more');
+            var page = parseInt('<?php echo $PagesNumber; ?>');
+            var totalPages;
+            var type = parseInt('<?php echo $pageType; ?>');
+            if (type === 1) {
+                $("#news").attr('selected', '');
+            }
+            else if (type === 0) {
+                $("#events").attr('selected', '');
+            } else {
+                $("#all").attr('selected', '');
+            }
+            switch (type) {
+                case '0':
+                    totalPages = parseInt('<?php echo $totalPagesEvents; ?>');
+                    break;
+                case '1':
+                    totalPages = parseInt('<?php echo $totalPagesNews; ?>');
+                    break;
+                default:
+                    totalPages = parseInt('<?php echo $totalPagesAll; ?>');
+            }
+            if (page === totalPages) {
+                load.attr("disabled", '');
+                load.hide();
+            }
+            load.click(function (e) {
+                e.preventDefault();
+                var type = (type !== NaN && type !== undefined) ? type : $('#selectpicker').val();
+                switch (type) {
+                    case '0':
+                        totalPages = parseInt('<?php echo $totalPagesEvents; ?>');
+                        break;
+                    case '1':
+                        totalPages = parseInt('<?php echo $totalPagesNews; ?>');
+                        break;
+                    default:
+                        totalPages = parseInt('<?php echo $totalPagesAll; ?>');
+                }
+                load.html('Loading');
+                if (page < totalPages) {
+                    page++;
+                    if (page === totalPages) {
+                        load.attr("disabled", '');
+                    }
+                } else {
+                    load.attr("disabled", '');
+                    load.hide();
+                    return false;
+                }
+                $.ajax({
+                    type: "get",
+                    url: "news-events.html?p=" + page + '&type=' + type,
+                    success: function (data) {
+                        if (page === totalPages) {
+                            load.hide();
+                        } else {
+                            load.html('Load More');
+                        }
+                        var result = $(data).find('.lists > li');
+                        $('.lists').append(result);
+                    }
+                });
+            });
+
+            $(".shownews").hide();
+            $(".showevents").hide();
+
+            $('.edelman-news-events').on('click','.placeHolderStyling .options li',function(){
+                $("#selectpicker").trigger('change');
+            })
+
+            $("#selectpicker").on("change", function () {
+                page = parseInt('<?php echo $PagesNumber; ?>');
+                load.html('Load More');
+                load.removeAttrs('disabled');
+                var type = parseInt($('#selectpicker').val());
+                var url = "news-events.html?" + 'p=' + page + '&type=' + type;
+                $.ajax({
+                    showLoader: true,
+                    type: "get",
+                    url: url,
+                    success: function (data) {
+                        load.trigger('show.loader');
+                        var result = $(data).find('.lists > li');
+                        $('.lists').html(result);
+                        load.trigger('hide.loder');
+                        // cutomSelectBox.customSelect();
+                        switch (type) {
+                            case 0:
+                                totalPages = parseInt('<?php echo $totalPagesEvents; ?>');
+                                if (totalPages > 1) {
+                                    load.show();
+                                }
+                                break;
+                            case 1:
+                                totalPages = parseInt('<?php echo $totalPagesNews; ?>');
+                                if (totalPages > 1) {
+                                    load.show();
+                                }
+                                break;
+                            default:
+                                totalPages = parseInt('<?php echo $totalPagesAll; ?>');
+                                if (totalPages > 1) {
+                                    load.show();
+                                }
+                        }
+                        if (type === 0 && totalPages === 0) {
+                            $(".showevents").show();
+                            $(".shownews").hide();
+                        } else if (type === 1 && totalPages === 0) {
+                            $(".shownews").show();
+                            $(".showevents").hide();
+                        } else if (type === 0 && totalPages > 0) {
+                            $(".shownews").hide();
+                        } else if (type === 1 && totalPages > 0) {
+                            $(".showevents").hide();
+                        } else {
+                            $(".shownews").hide();
+                            $(".showevents").hide();
+                        }
+                        if (page === totalPages || totalPages < page) {
+                            load.attr("disabled", '');
+                            load.hide();
+                        }
+                    }
+                });
+            })
+        });
+    })
+</script>

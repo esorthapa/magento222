@@ -1,0 +1,25 @@
+{
+  "name": "javra/module-javraevents",
+  "description": "",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "javra"
+    }
+  ],
+  "repositories": [
+    { "type": "vcs", "url": "http://git.javra.com/ayushdada/MagentoWebshop/tree/catalog" }
+  ],
+  "require-all": true,
+
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Javra\\Javraevents\\": ""
+    }
+  }
+}

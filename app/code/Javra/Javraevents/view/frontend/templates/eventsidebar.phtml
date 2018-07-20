@@ -1,0 +1,35 @@
+<?php
+/**
+* Side bar
+*/
+ ?>
+ <div class="event-lists">
+    <ul class="events-right">
+    <h3><?php echo __("Events") .' ' .date('Y', strtotime('-1 year')). '/' .date("Y"); ?></h3>
+    <?php foreach ($block->getPosts() as $post) { ?>
+            <li>
+                <h4><a href="<?php echo $post->getUrlKey() ?>"><?php echo $post->getTitle() ?></a></h4>
+                <h4 class="eventDate">
+                <?php
+                    $startdate=$post->getStartDate();
+                    $startdate=date("j", strtotime($startdate));
+                    $enddate= $post->getEndDate();
+                    $enddate=date("j F Y", strtotime($enddate));
+                    echo " ".$startdate.'-'. $enddate;
+                    ?>
+                </h4>
+                
+                 <?php 
+                 $location = strip_tags($post->getLocation());
+                 $country = $block->getCountryname($post->getCountry());
+                 $city = $post->getCity();
+                 ?>
+                <p><?php echo $location; ?></p>
+                <p class="eventCity"><?php echo $city. ','; ?></p>
+                <p class="eventCountry"><?php echo $country; ?></p>
+                <br/>
+                <a href="<?php echo $post->getUrlKey() ?>" class="moreInfo" ><?php echo __("More info"); ?></a>
+            </li>
+        <?php } ?>
+        </ul>
+    </div>

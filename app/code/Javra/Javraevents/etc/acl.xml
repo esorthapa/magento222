@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::content">
+                    <resource id="Javra_Javraevents::blog_content" title="Events Blog" sortOrder="10" >
+                        <resource id="Javra_Javraevents::post" title="Posts Events" sortOrder="40">
+                            <resource id="Javra_Javraevents::save" title="Save Events Post" sortOrder="10" />
+                            <resource id="Javra_Javraevents::post_delete" title="Delete Events Post" sortOrder="20" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

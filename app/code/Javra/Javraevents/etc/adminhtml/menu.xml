@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Javra_Javraevents::blog_content" title="Events" module="Javra_Javraevents" sortOrder="50" parent="Magento_Backend::content" resource="Javra_Javraevents::blog_content" />
+        <add id="Javra_Javraevents::post" title="News &amp; Events" module="Javra_Javraevents" sortOrder="0" parent="Javra_Javraevents::blog_content" action="blog/post" resource="Javra_Javraevents::post"/>
+    </menu>
+</config>

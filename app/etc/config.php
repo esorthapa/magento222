@@ -7,6 +7,7 @@ return [
     'Magento_Backend' => 1,
     'Javra_Banner' => 1,
     'Javra_Bannerslider' => 1,
+    'Javra_Javraevents' => 1,
     'Javra_Viewcount' => 1,
     'Magento_Theme' => 1,
     'Magento_Customer' => 1,

@@ -1,0 +1,38 @@
+        <h2><?php echo __("Events"); ?> <?php echo date("Y"); ?></h2>   
+        <div class="eventBorder">             
+        <?php 
+        if(count($block->getLatestNews())) {
+        $count=0; ?>
+        <?php foreach ($block->getLatestNews() as $post){ ?>
+               <h3> <a href="<?php echo $post->getUrlKey() ?>" >
+                <?php echo $post->getTitle() ?>
+                <br/>
+                <?php 
+                $startDate = new DateTime($post->getStartDate(), new DateTimeZone('UTC'));
+                echo $startDate->format('d');
+                $endDate = new DateTime($post->getEndDate(), new DateTimeZone('UTC'));
+                $month = $endDate->format('m');
+
+                echo "-".$endDate->format('d');
+                $dt = DateTime::createFromFormat('!m', $month);
+                echo "\n".$dt->format('F')."\n".date("Y");?>
+                </a> </h3>
+                <?php
+                $string = strip_tags($post->getContent());
+                if (strlen($string) >70){
+                $stringCut = substr($string, 0, 70);
+                echo "<p>".$stringCut."</p>"; 
+                }else{
+                echo "<p>".$string."</p>";
+                }
+                $count++;
+                if($count==1){ ?>
+                </div>
+                <?php   } } }else{  ?>
+                <?php echo __("No events!");  ?>
+                </div>
+                <?php }?>              
+               
+
+
+

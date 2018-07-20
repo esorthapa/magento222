@@ -1,0 +1,37 @@
+<?php //echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('news-events-banner')->toHtml(); ?>
+<?php $mediaUrl = $block->getBaseMediaUrl();
+$referer = $this->getBaseUrl() . 'discover/news-events.html';
+?>
+<div class="back-to"><a href="<?php echo $referer; ?>"
+                        class="action continue"><span> < <?php echo __('Back to News & Events') ?> </span></a></div>
+<div class="news-events-wrapper">
+    <?php
+    if (in_array($block->getCurrentStore(), $block->getStores()) || in_array(0, $block->getStores())):?>
+        <div class="edelman-news-events">
+            <img src="<?php echo $this->helper('Javra\Javraevents\Helper\ImagePath')->getImageUrl($block->getPost()->getImage()); ?>" alt="">
+            <h4><?php echo $block->getPost()->getTitle() ?></h4>
+            <?php
+            if ($block->getPost()->getType() === '0') {
+                $startdate = $block->getPost()->getStartDate();
+                $endtdate = $block->getPost()->getEndDate();
+                $startdate = date("d.m.Y", strtotime($startdate));
+                $enddate = date("d.m.Y", strtotime($startdate));
+
+                echo "<span>" . $startdate . '-' . $enddate . "</span>";
+            }
+            ?>
+
+            <p><?php echo $block->getPost()->getContent(); ?></p>
+            <P class="share-page"><?php echo __("Share this page"); ?></P>
+            <div class="addthis_inline_share_toolbox"></div>
+        </div>
+    <?php else: ?>
+        <div class="edelman-news-events">
+            <h3 class="genericFormStyling"><?php echo __('Sorry. The Post isn\'t available for current store.'); ?></h3>
+        </div>
+    <?php endif; ?>
+    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('event_sidebar')->toHtml(); ?>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a460b04d597e67e"></script>
+
+

@@ -1,0 +1,136 @@
+    <?php /** @var $block \Javra\Javraevents\Block\PostList */ ?>
+    <!--<h1>--><?php //echo __("Events 2017") ?><!--</h1>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<ul class="blog-post-list">-->
+        <?php /** @var $post \Javra\Javraevents\Model\Post */ ?>
+    <select  class="selectpicker">
+        <option value='ALL' selected="selected">All</option>
+        <option value="news">News</option>
+        <option value="events">Events</option>
+    </select>
+    <div class="container-fluid">
+            <?php foreach ($block->getPosts() as $post): ?>
+
+
+
+    <div class="row">
+
+
+                <?php if($post->getType()=='1'): ?>
+                            <div class="col-sm-4">
+
+                                <div class="blog-post-item-meta">
+                                    <img src=<?php echo $post->getImage();?>">
+                                </div>
+                                <br/>
+                                <div class="blog-post-item-meta">
+                                    <span style="background-color:darkslategray;">News</span><strong><?php //echo __('Start Time:') ?></strong> <?php echo $post->getStartDate() ?>
+                                </div>
+
+
+                                <h4 class="blog-post-item-title">
+                                    <span><?php echo $post->getTitle() ?></span>
+                                </h4>
+                                <?php $string = strip_tags($post->getContent());
+
+                                ?>
+                                <?php if (strlen($string) >70): ?>
+
+                                    <?php $stringCut = substr($string, 0, 70); ?>
+                                    <div class="blog-post-item-content">
+                                        <?php echo $stringCut; ?>
+                                    </div>
+
+                                <?php endif; ?>
+    <!--                            <div class="blog-post-item-content">-->
+    <!--                                --><?php //echo $post->getContent(); ?>
+    <!--                            </div>-->
+
+                                <div class="blog-post-item-content">
+                                    <?php echo $post->getCreatedBy(); ?>
+                                </div>
+                                <br/>
+                                <div class="blog-post-item-content">
+                                    <a href="<?php echo $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>/index/detail/id/<?php echo $post->getId(); ?>" >Read more ....</a>
+                                </div>
+
+                        </div>
+
+                <?php else: ?>
+                                 <div class="col-sm-4">
+
+                                <div class="blog-post-item-meta">
+                                    <img src="<?php echo $post->getImage();?>">
+                                </div>
+                                     <br/>
+
+                                <div class="blog-post-item-meta">
+                                    <span style="background-color:darkslategray;">Events</span><strong><?php //echo __('Created at:') ?></strong> <?php echo $post->getStartDate() ?>
+                                </div>
+
+                                <h4 class="blog-post-item-title">
+                                    <span><?php echo $post->getTitle() ?></span>
+                                </h4>
+
+            <?php $string = strip_tags($post->getContent());
+
+            ?>
+            <?php if (strlen($string) >70): ?>
+
+                <?php $stringCut = substr($string, 0, 70); ?>
+                <div class="blog-post-item-content">
+                    <?php echo $stringCut; ?>
+                </div>
+
+            <?php endif; ?>
+
+
+    <!--                            <div class="blog-post-item-content">-->
+    <!--                                --><?php //echo $post->getContent(); ?>
+    <!--                            </div>-->
+
+                                <div class="blog-post-item-content">
+                                    <?php echo $post->getCreatedBy(); ?>
+                                </div>
+            <br/>
+            <div class="blog-post-item-content">
+                <a href="<?php echo $post->getUrl() ?>" >Read more ....</a>
+            </div>
+
+
+
+                <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+
+
+            <div class="col-sm-4">
+                <?php foreach ($block->getPosts() as $post): ?>
+
+                        <h3 class="blog-post-item-title">
+                            <a href="<?php echo $post->getUrl() ?>"><?php echo $post->getTitle() ?></a>
+                        </h3>
+
+
+                        <div class="blog-post-item-content">
+                            <?php echo $post->getContent(); ?>
+                        </div>
+
+    <!--                    <div class="blog-post-item-content">-->
+    <!--                        --><?php //echo $post->getImage(); ?>
+    <!--                    </div>-->
+
+                        <div class="blog-post-item-meta">
+<!--                            <strong>--><?php //echo __('Created at:') ?><!--</strong> --><?php //echo $post->getStartDate() ?>
+                        </div>
+
+                        <div class="blog-post-item-content">
+                            <?php echo $post->getCreatedBy(); ?>
+                        </div>
+
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+    <!--</ul>-->
